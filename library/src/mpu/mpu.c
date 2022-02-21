@@ -268,6 +268,8 @@ int rc_mpu_initialize(rc_mpu_data_t *data, rc_mpu_config_t conf)
 		return -1;
 	}
 
+	rc_i2c_write_byte(config.i2c_bus, PWR_MGMT_1, 0x00);
+
 	// initialize the magnetometer too if requested in config
 	if(conf.enable_magnetometer){
 		// start magnetometer NOT in cal mode (0)
@@ -795,6 +797,7 @@ int rc_mpu_initialize_dmp(rc_mpu_data_t *data, rc_mpu_config_t conf)
 		rc_i2c_unlock_bus(config.i2c_bus);
 		return -1;
 	}
+	rc_i2c_write_byte(config.i2c_bus, PWR_MGMT_1, 0x00);
 	// MPU6500 shares 4kB of memory between the DMP and the FIFO. Since the
 	//first 3kB are needed by the DMP, we'll use the last 1kB for the FIFO.
 	// this is also set in set_accel_dlpf but we set here early on
