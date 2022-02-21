@@ -279,7 +279,7 @@ int rc_mpu_initialize(rc_mpu_data_t *data, rc_mpu_config_t conf)
 			return -1;
 		}
 	}
-	else __power_off_magnetometer();
+	/* else __power_off_magnetometer(); */
 
 	// all done!!
 	rc_i2c_unlock_bus(config.i2c_bus);
@@ -887,7 +887,7 @@ int rc_mpu_initialize_dmp(rc_mpu_data_t *data, rc_mpu_config_t conf)
 		}
 		startMagYaw = -atan2(y_sum, x_sum);
 	}
-	else __power_off_magnetometer();
+	// else __power_off_magnetometer();
 
 
 	// set up the DMP, order is important, from motiondrive_tutorial.pdf:
